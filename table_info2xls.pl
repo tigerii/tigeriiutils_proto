@@ -8,7 +8,7 @@ $ENV{ORACLE_SID}='XE';
 $ENV{NLS_LANG}='JAPANESE_JAPAN.AL32UTF8';
 $ENV{NLS_DATE_FORMAT}='yyyy/mm/dd hh24:mi:ss';
 $user = 'hr';
-$password = 'hr';
+$password = '******';
 
 $workbook = Spreadsheet::WriteExcel->new('table_info.xls');
 
@@ -34,12 +34,7 @@ EOS
   $worksheet = $workbook->add_worksheet($_);
   $format = $workbook->add_format();
 
-  #write column name
-  for($j=0; $j<$sth->{NUM_OF_FIELDS}; $j++){
-    $worksheet->write_string(0, $j, $sth->{NAME}->[$j], $format);
-  }
-
-  $i = 1;
+  $i = 0;
   while(@row=$sth->fetchrow_array()){
     $j = 0;
     foreach(@row){
