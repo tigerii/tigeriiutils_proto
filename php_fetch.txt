@@ -1,0 +1,19 @@
+<?php
+$dbh = new PDO('dblib:host=localhost:1433;dbname=AdventureWorks2014', 'test', 'test');
+
+if($dbh){
+  print "connected!\n";
+}else{
+  print "can't connected!\n";
+}
+
+$st = $dbh->prepare("select * from HumanResources.Department");
+$st->execute();
+while ( $row = $st->fetch() ){
+  print_r($row);
+}
+
+unset($dbh);
+unset($st);
+
+?>
